@@ -8,20 +8,20 @@
         <el-col :span="19">
           <h3 class="middle">电商后台管理系统</h3>
         </el-col>
-        <el-col :span="1"><a href="#" class="loginout">退出</a></el-col>
+        <el-col :span="1"><a href="#" class="loginout" @click.prevent="handleLoginout()">退出</a></el-col>
       </el-row>
     </el-header>
   <el-container>
   <el-aside width="200px" class="aside">
     <!-- 导航 -->
-    <el-menu default-active="2" unique-opened>
+    <el-menu default-active="2" unique-opened router>
      <!-- 1 -->
       <el-submenu index="1">
         <template slot="title">
           <i class="el-icon-location"></i>
           <span>用户管理</span>
         </template>
-        <el-menu-item index="1-1">
+        <el-menu-item index="users">
           <i class="el-icon-location"></i>          
           用户列表</el-menu-item>      
         </el-submenu>   
@@ -79,14 +79,34 @@
                    
     
   </el-aside>
-    <el-main class="main">Main</el-main>
+    <el-main class="main">
+      <router-view></router-view>
+    </el-main>
   </el-container>
 </el-container>
 </template>
 
 <script>
 export default {
-  
+  beforeCreate(){
+    if(!localStorage.getItem("token")){
+      this.$router.push({
+        name:"login"
+      })
+    }
+  },
+  methods:{
+    handleLoginout(){
+      // 1.清除token
+      localStorage.clear();
+      // 2.回到登录
+      this.$router.push({
+        name:"login"
+      })
+      // 3.退出成功
+      // this.$message.success(msg);
+    }
+  }
 }
 </script>
 
