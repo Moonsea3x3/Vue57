@@ -183,7 +183,7 @@ export default {
       const res = await this.$http.put(`users/${this.currUserId}/role`,{
         rid:this.currUserRoleId
       })
-      console.log(res);
+      // console.log(res);
       this.dialogFormVisibleRole = false;
     },
     //分配角色
@@ -294,8 +294,8 @@ export default {
 
 
     async getTableData() {
-      const AUTH_TOKEN = localStorage.getItem("token");
-      this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
+      // const AUTH_TOKEN = localStorage.getItem("token");
+      // this.$http.defaults.headers.common["Authorization"] = AUTH_TOKEN;
 
       const res = await this.$http.get(
         `users?query=${this.query}&pagenum=${this.pagenum}&pagesize=${
