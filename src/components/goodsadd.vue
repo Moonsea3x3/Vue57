@@ -40,7 +40,7 @@
                   @change="handleChange"  改变label
                   props 配置选项 ={label/value/children} 赋值来源都是options数据源中的key名
                 -->
-
+            {{selectedOptions}}
             <el-cascader expand-trigger="hover"  :options="options"
               v-model="selectedOptions"  :props="defaultProp"
               clearable  @change="handleChange">
@@ -80,7 +80,7 @@ export default {
         attrs:''
       },
       options:[], 
-      selectedOptions:[],
+      selectedOptions:[1,3,6],
       defaultProp:{
         // label/value/children
         label:"cat_name",
